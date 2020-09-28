@@ -25,8 +25,14 @@ router.post('/', (req, res) => {
   // POST route code here
 
   queryText =
-  `INSERT INTO "todo"
-  `
+  `INSERT INTO "todo" (task)
+  VALUES ($1);`
+
+  pool
+    .query(queryText, [req.body.text] )
+    .then(() => res.sendStatus(200))
+    .catch(() => res.sendStatus(500));
+
 });
 
 /**

@@ -19,7 +19,7 @@ class ListItem extends Component {
   };
 
   handleCheck = () => event => {
-    this.setState({ checked: event.target.checked });
+    this.setState({ checked: !this.state.checked });
   }
 
   handleDelete = () => event => {
@@ -37,10 +37,8 @@ class ListItem extends Component {
       <TableRow>
         <TableCell>
           <Checkbox
-            defaultChecked={task.completed}
             checked={this.state.checked}
-            onChange={this.handleCheck}
-            value='checked'
+            onChange={this.handleCheck()}
           />
         </TableCell>
         <TableCell>
@@ -49,7 +47,7 @@ class ListItem extends Component {
         <TableCell>
           <IconButton
             color='secondary'
-            onClick={this.handleDelete}
+            onClick={this.handleDelete()}
           >
             <DeleteIcon />
           </IconButton>

@@ -2,15 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import ListItem from '../ListItem/ListItem';
+import AddTaskForm from '../AddTaskForm/AddTaskForm';
 import {
+  Paper,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
   TableRow,
-  Paper
+  withStyles
 } from '@material-ui/core';
+
+const styles = theme => ({
+  table: {
+    maxWidth: '90%',
+    margin: '5%'
+  }
+})
 
 class ListContainer extends Component {
 
@@ -19,15 +28,22 @@ class ListContainer extends Component {
   }
 
   render() {
+    const {classes} = this.props;
     return (
       <>
+      <AddTaskForm />
                     {JSON.stringify(this.props.store)}
 
-      <TableContainer component={Paper}>
+      <TableContainer
+      component={Paper}
+      className={classes.table}
+      >
         <Table aria-label="to do list">
           <TableHead>
             <TableRow>
+              <TableCell />
               <TableCell>Task</TableCell>
+              <TableCell />
             </TableRow>
           </TableHead>
           <TableBody>
@@ -43,4 +59,4 @@ class ListContainer extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(ListContainer);
+export default withStyles(styles)(connect(mapStoreToProps)(ListContainer));
