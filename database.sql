@@ -4,7 +4,13 @@
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
 CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+  "id" SERIAL PRIMARY KEY,
+  "username" VARCHAR (80) UNIQUE NOT NULL,
+  "password" VARCHAR (1000) NOT NULL
+);
+
+CREATE TABLE "todo" (
+  "id" SERIAL PRIMARY KEY,
+  "task" VARCHAR(1000),
+  "completed" BOOLEAN DEFAULT FALSE
 );
