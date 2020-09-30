@@ -34,7 +34,7 @@ function* removeTask(action) {
 // worker Saga: will be fired on "UPDATE_TASK" actions
 function* updateTask(action) {
   try {
-    yield axios.put(`/api/task/${action.payload.id}`);
+    yield axios.put(`/api/task/${action.payload.id}`, action.payload);
     yield put({ type: 'FETCH_TASK' });
   } catch (error) {
     console.log('Task delete request failed', error);

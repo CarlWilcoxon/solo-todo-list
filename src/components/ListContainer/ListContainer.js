@@ -4,6 +4,7 @@ import mapStoreToProps from '../../redux/mapStoreToProps';
 import ListItem from '../ListItem/ListItem';
 import AddTaskForm from '../AddTaskForm/AddTaskForm';
 import {
+  Grid,
   Paper,
   Table,
   TableBody,
@@ -30,31 +31,36 @@ class ListContainer extends Component {
   render() {
     const {classes} = this.props;
     return (
-      <>
-      <AddTaskForm />
-                    {JSON.stringify(this.props.store)}
-
-      <TableContainer
-      component={Paper}
-      className={classes.table}
+      <Grid
+        container
+        direction="column"
+        justify="space-evenly"
+        alignItems="center"
       >
-        <Table aria-label="to do list">
-          <TableHead>
-            <TableRow>
-              <TableCell />
-              <TableCell>Task</TableCell>
-              <TableCell />
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.props.store.task !== undefined ?
-            this.props.store.task.map( (task, index) =>
-              <ListItem task={task} key={index} />
-            ):null}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      </>
+        <AddTaskForm />
+        {/* {JSON.stringify(this.props.store)} */}
+
+        <TableContainer
+        component={Paper}
+        className={classes.table}
+        >
+          <Table aria-label="to do list">
+            <TableHead>
+              <TableRow>
+                <TableCell />
+                <TableCell>Task</TableCell>
+                <TableCell />
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.props.store.task !== undefined ?
+              this.props.store.task.map( (task, index) =>
+                <ListItem task={task} key={index} />
+              ):null}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
     );
   }
 }

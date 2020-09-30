@@ -6,7 +6,6 @@ import {
   IconButton,
   TableCell,
   TableRow,
-  Paper,
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -19,7 +18,18 @@ class ListItem extends Component {
   };
 
   handleCheck = () => event => {
-    this.setState({ checked: !this.state.checked });
+    this.setState((state) => {
+
+      this.props.dispatch({
+        type: 'UPDATE_TASK',
+        payload: {
+          checked: !state.checked,
+          id: this.props.task.id,
+        }
+      });
+
+      return {checked: !state.checked}
+    });
   }
 
   handleDelete = () => event => {

@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 
   queryText =
   `SELECT * FROM "todo"
-  ORDER BY "id";`
+  ORDER BY "id" ASC;`
 
   pool
     .query(queryText)
@@ -43,7 +43,17 @@ router.put('/:id', (req, res) => {
 
   queryText =
   `UPDATE "todo"
-  SET`
+  SET "completed" = $1
+  WHERE "id" = $2;`
+
+  console.log
+
+  pool
+    .query(queryText, [req.body.checked , req.params.id] )
+    .then(() => res.sendStatus(204))
+    .catch(() => res.sendStatus(500));
+
+
 });
 
 /**
